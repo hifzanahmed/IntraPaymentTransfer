@@ -1,11 +1,12 @@
 package com.IntraPaymentTransfer.IntraPaymentTransfer.service.Impl;
 
 import com.IntraPaymentTransfer.IntraPaymentTransfer.dao.AccountRepository;
+import com.IntraPaymentTransfer.IntraPaymentTransfer.exception.AccountNotFoundException;
+import com.IntraPaymentTransfer.IntraPaymentTransfer.exception.NoAccountPresentException;
 import com.IntraPaymentTransfer.IntraPaymentTransfer.model.Account;
 import com.IntraPaymentTransfer.IntraPaymentTransfer.model.Balance;
 import com.IntraPaymentTransfer.IntraPaymentTransfer.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,38 +17,40 @@ public class AccountServiceImpl implements AccountService {
     AccountRepository accountRepository;
 
     @Override
-    public ResponseEntity<Object> addAccount(List<Account> accountList) {
+    public void addAccount(List<Account> accountList) {
         accountList.forEach(account -> {
             accountRepository.save(account);
         });
-        return ResponseEntity.ok().body("Test account(s) added to H2");
     }
 
     @Override
-    public ResponseEntity<Object> getBalance(Integer accountId) {
+    public Balance getBalance(Integer accountId) {
         Account account = accountRepository.findById(accountId).orElse(null);
         if (account == null) {
-            return ResponseEntity.ok().body("Invalid account number");
+            throw new AccountNotFoundException("Invalid account number");
         }
         Balance result = new Balance();
         result.setAccountId(account.getAccountId());
         result.setBalance(account.getBalance());
         result.setCurrency(account.getCurrency());
-        return ResponseEntity.ok().body(result);
+        return result;
     }
 
     @Override
-    public ResponseEntity<Object> getAccountDetail(Integer accountId) {
+    public Account getAccountDetail(Integer accountId) {
         Account account = accountRepository.findById(accountId).orElse(null);
         if (account == null) {
-            return ResponseEntity.ok().body("Invalid account number");
+            throw new AccountNotFoundException("Invalid account number");
         }
-        return ResponseEntity.ok().body(account);
+        return account;
     }
 
     @Override
-    public List<Account> getAccountDetail() {
+    public List<Account> getAllAccounts() {
         List<Account> accountList = accountRepository.findAll();
+        if (accountList.size() == 0) {
+            throw new NoAccountPresentException("No Account present");
+        }
         return accountList;
     }
 }

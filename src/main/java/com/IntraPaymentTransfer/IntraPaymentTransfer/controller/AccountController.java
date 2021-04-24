@@ -18,25 +18,22 @@ public class AccountController {
 
     @PostMapping("/accounts/addAccount")
     public ResponseEntity<Object> addAccount(@RequestBody List<Account> accountList) {
-        return accountService.addAccount(accountList);
+        accountService.addAccount(accountList);
+        return ResponseEntity.ok().body("Test account(s) added to H2");
     }
 
     @GetMapping("accounts/{accountId}/balance")
     public ResponseEntity<Object> getBalance(@PathVariable Integer accountId) {
-        return accountService.getBalance(accountId);
+        return ResponseEntity.ok().body(accountService.getBalance(accountId));
     }
 
     @GetMapping("accounts/{accountId}/accountDetail")
     public ResponseEntity<Object> getAccountDetail(@PathVariable Integer accountId) {
-        return accountService.getAccountDetail(accountId);
+        return ResponseEntity.ok().body(accountService.getAccountDetail(accountId));
     }
 
     @GetMapping("accounts/getAllAccounts")
-    public ResponseEntity<List<Account>> getAccountDetail() {
-        List<Account> accountList = accountService.getAccountDetail();
-        if (accountList.size() == 0) {
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.ok().body(accountList);
+    public ResponseEntity<Object> getAllAccounts() {
+        return ResponseEntity.ok().body(accountService.getAllAccounts());
     }
 }

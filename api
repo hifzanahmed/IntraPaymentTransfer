@@ -1,0 +1,58 @@
+Add New Account
+http://localhost:8080/accounts/addAccount
+[
+    {
+        "accountId": 111,
+        "name": "test1",
+        "balance": 0.00,
+        "currency": "GBP",
+        "status": "Active"
+    },
+    {
+        "accountId": 222,
+        "name": "test1",
+        "balance": 0.00,
+        "currency": "GBP",
+        "status": "Active"
+    },
+    {
+        "accountId": 333,
+        "name": "test1",
+        "balance": 0.00,
+        "currency": "GBP",
+        "status": "Active"
+    },
+    {
+        "accountId": 444,
+        "name": "test1",
+        "balance": 0.00,
+        "currency": "GBP",
+        "status": "Active"
+    }
+]
+Get Account Balance
+http://localhost:8080/accounts/111/balance
+Get Account Details
+http://localhost:8080/accounts/111/accountDetail
+Get all Accounts
+http://localhost:8080/accounts/getAllAccounts
+Make Intra Transfer Payment
+http://localhost:8080/accounts/intraTransfer
+
+{
+    "debitAccount": 111,
+    "creditAccount": 222,
+    "amount": 10.00,
+    "currency": "GBP",
+    "paymentNote": "Intra trasnfer Payment",
+    "paymentDate": "2021-04-23"
+}
+
+Get All transactions
+http://localhost:8080/accounts/getAllTransactions
+Get Mini Statement/fetch latest 20 transactions
+http://localhost:8080/accounts/111/getMiniStatement
+
+
+
+

@@ -18,7 +18,8 @@ public class TransactionsController {
 
     @PostMapping("/accounts/intraTransfer")
     public ResponseEntity<Object> transferIntraPay(@RequestBody TransactionPayload payload) {
-        return transactionService.transferIntraPay(payload);
+        transactionService.transferIntraPay(payload);
+        return ResponseEntity.ok().body("Payment transferred successfully");
     }
 
     @GetMapping("accounts/getAllTransactions")
@@ -32,6 +33,6 @@ public class TransactionsController {
 
     @GetMapping("accounts/{accountId}/getMiniStatement")
     public ResponseEntity<Object> getMiniStatement(@PathVariable Integer accountId) {
-        return transactionService.getMiniStatement(accountId);
+        return ResponseEntity.ok().body(transactionService.getMiniStatement(accountId));
     }
 }

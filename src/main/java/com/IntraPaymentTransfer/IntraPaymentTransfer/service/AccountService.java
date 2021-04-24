@@ -1,16 +1,16 @@
 package com.IntraPaymentTransfer.IntraPaymentTransfer.service;
 
 import com.IntraPaymentTransfer.IntraPaymentTransfer.model.Account;
-import org.springframework.http.ResponseEntity;
+import com.IntraPaymentTransfer.IntraPaymentTransfer.model.Balance;
 
 import java.util.List;
 
 public interface AccountService {
-    ResponseEntity<Object> addAccount(List<Account> accountList);
+    void addAccount(List<Account> accountList);
 
-    ResponseEntity<Object> getBalance(Integer accountId);
+    Balance getBalance(Integer accountId);
 
-    ResponseEntity<Object> getAccountDetail(Integer accountId);
+    Account getAccountDetail(Integer accountId);
 
-    List<Account> getAccountDetail();
+    List<Account> getAllAccounts();
 }
