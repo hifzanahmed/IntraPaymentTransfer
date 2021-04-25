@@ -8,16 +8,8 @@ public class DebitAccountNotFoundException extends RuntimeException {
 
     private static final long serialVersionUID = 2441536754543148403L;
 
-    public DebitAccountNotFoundException() {
-        super();
-    }
-    public DebitAccountNotFoundException(String message, Throwable cause) {
-        super(message, cause);
-    }
     public DebitAccountNotFoundException(String message) {
         super(message);
     }
-    public DebitAccountNotFoundException(Throwable cause) {
-        super(cause);
-    }
+
 }

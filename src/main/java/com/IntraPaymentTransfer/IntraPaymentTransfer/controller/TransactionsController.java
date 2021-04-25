@@ -4,6 +4,7 @@ import com.IntraPaymentTransfer.IntraPaymentTransfer.model.*;
 
 import com.IntraPaymentTransfer.IntraPaymentTransfer.service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,7 @@ public class TransactionsController {
     @PostMapping("/accounts/intraTransfer")
     public ResponseEntity<Object> transferIntraPay(@RequestBody TransactionPayload payload) {
         transactionService.transferIntraPay(payload);
-        return ResponseEntity.ok().body("Payment transferred successfully");
+        return new ResponseEntity<Object>("Payment transferred successfully", HttpStatus.CREATED);
     }
 
     @GetMapping("accounts/getAllTransactions")

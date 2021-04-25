@@ -4,6 +4,7 @@ import com.IntraPaymentTransfer.IntraPaymentTransfer.model.Account;
 
 import com.IntraPaymentTransfer.IntraPaymentTransfer.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +20,8 @@ public class AccountController {
     @PostMapping("/accounts/addAccount")
     public ResponseEntity<Object> addAccount(@RequestBody List<Account> accountList) {
         accountService.addAccount(accountList);
-        return ResponseEntity.ok().body("Test account(s) added to H2");
+        //return ResponseEntity.created().body("Test account(s) added to H2");
+        return new ResponseEntity<Object>("Test account(s) added to H2", HttpStatus.CREATED);
     }
 
     @GetMapping("accounts/{accountId}/balance")

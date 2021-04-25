@@ -1,3 +1,10 @@
+Swagger documentation
+http://localhost:8080/swagger-ui/index.html?configUrl=/v3/api-docs/swagger-config#/
+
+Coverage check
+mvn clean install -Dintegration-test=true
+
+
 Add New Account
 http://localhost:8080/accounts/addAccount
 [
@@ -44,7 +51,7 @@ http://localhost:8080/accounts/intraTransfer
     "creditAccount": 222,
     "amount": 10.00,
     "currency": "GBP",
-    "paymentNote": "Intra trasnfer Payment",
+    "paymentNote": "Intra transfer Payment",
     "paymentDate": "2021-04-23"
 }
 

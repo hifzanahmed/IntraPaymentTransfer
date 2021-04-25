@@ -6,8 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class IntraPaymentTransferApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+    @Test
+    public void main() {
+        IntraPaymentTransferApplication.main(new String[] {});
+    }
 
 }

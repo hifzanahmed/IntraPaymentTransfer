@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import java.math.BigDecimal;
 
 @Entity
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter

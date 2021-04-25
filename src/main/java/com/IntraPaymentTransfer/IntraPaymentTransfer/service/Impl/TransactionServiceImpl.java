@@ -2,10 +2,7 @@ package com.IntraPaymentTransfer.IntraPaymentTransfer.service.Impl;
 
 import com.IntraPaymentTransfer.IntraPaymentTransfer.dao.AccountRepository;
 import com.IntraPaymentTransfer.IntraPaymentTransfer.dao.TransactionsRepository;
-import com.IntraPaymentTransfer.IntraPaymentTransfer.exception.AccountNotFoundException;
-import com.IntraPaymentTransfer.IntraPaymentTransfer.exception.CreditAccountNotFoundException;
-import com.IntraPaymentTransfer.IntraPaymentTransfer.exception.DebitAccountNotFoundException;
-import com.IntraPaymentTransfer.IntraPaymentTransfer.exception.InsufficientFundException;
+import com.IntraPaymentTransfer.IntraPaymentTransfer.exception.*;
 import com.IntraPaymentTransfer.IntraPaymentTransfer.model.Account;
 import com.IntraPaymentTransfer.IntraPaymentTransfer.model.TransactionPayload;
 import com.IntraPaymentTransfer.IntraPaymentTransfer.model.Transaction;
@@ -37,6 +34,9 @@ public class TransactionServiceImpl implements TransactionService {
         }
         if ((debitAccount.getBalance().compareTo(payload.getAmount())) == -1) {
             throw new InsufficientFundException("Insufficient fund available for the account " + payload.getDebitAccount());
+        }
+        if(payload.getAmount().compareTo(BigDecimal.ZERO)<0) {
+            throw new RuntimeException("Bad Request");
         }
         //Update the debit account details(available balance)
         BigDecimal debitAccountBalance = debitAccount.getBalance().subtract(payload.getAmount());
